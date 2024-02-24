@@ -47,6 +47,16 @@ $(document).ready(function(){
         backSpeed: 60,
         loop: true
     });
+    // JavaScript to toggle blur overlay when the user tries to take a screenshot
+    window.addEventListener("keyup", function(event) {
+        if (event.keyCode === 44) { // Check for PrtScn key press
+            var blurOverlay = document.getElementById("blurOverlay");
+            style.display = "block";
+            setTimeout(function() {
+                blurOverlay.style.display = "none";
+            }, 3000); // Adjust duration as needed
+        }
+    });
 
     // owl carousel script
     $('.carousel').owlCarousel({
