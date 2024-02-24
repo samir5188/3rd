@@ -214,6 +214,63 @@ section .title::after{
 }
 
 /* about section styling */
+#blurOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px); /* Adjust blur intensity as needed */
+    z-index: 9999;
+    pointer-events: none; /* Allows interaction with elements behind the overlay */
+    display: none;
+}
+.imageContent {
+    flex-basis: 40%;
+    left: 0;
+    right: 10;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.imageContent {
+    position: relative; /* Add position relative to create a stacking context */
+}
+
+.myImg img {
+    position: relative; /* Ensure the image is positioned relative to its container */
+    z-index: 1; /* Ensure the image is above the trackball */
+}
+
+/* Additional styling for the trackball animation if needed */
+@keyframes ballBounce {
+    0%, 100% {
+        transform: translateY(-20%);
+    }
+    50% {
+        transform: translateY(20%);
+    }
+}
+
+.imageElement {
+    background-color: rgb(247, 64, 101); /* Adjust color and opacity as needed */
+    width: 300px;
+    height: 300px;
+    margin-top: 50px;
+    z-index: 0; /* Ensure it's behind other elements */
+    position: absolute; /* Position the trackball absolutely */
+    animation: ballBounce 3s infinite; /* Example animation, adjust as needed */
+    border-radius: 50%;
+    transition: 1s;
+    box-shadow: 0px 1px 183px 21px rgb(230, 113, 136);
+    -webkit-box-shadow: 0px 1px 183px 21px rgb(239, 41, 81);
+    -moz-box-shadow: 0px 1px 183px 21px rgb(254, 42, 85);
+}
+
+
+
+
 .about .title::after{
     content: "who i am";
 }
@@ -233,6 +290,51 @@ section .title::after{
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 10px;
+    
+}
+
+.buttons {
+    display: flex; 
+    align-items: center; 
+}
+
+.github-btn {
+    margin-left: 20px; 
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px; /* Adjust to make more circular */
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.view-portfolio {
+    background-color: crimson; 
+    color: #fff;
+    box-shadow: 0px 5px 15px rgba(255, 0, 0, 0.4); 
+}
+
+.view-portfolio:hover {
+    background-color: #ff3333;
+}
+
+.github-btn {
+    background-color: #333; 
+    color: #fff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+    margin-left: 10px; /* Adjust the margin as needed */
+}
+
+.github-btn:hover {
+    background-color: #000; /* Darker black on hover */
+}
+.about ,
+.contact,
+.skills{
+    background-color: grey
 }
 .about .about-content .right .text span{
     color: crimson;
@@ -256,11 +358,20 @@ section .title::after{
     color: crimson;
     background: none;
 }
-
+.about .about-content .left img {
+    height: 87%; /* Adjust the height of the image */
+    width: 100%; /* Adjust the width of the image */
+    object-fit: cover; /* Ensure the image covers its container */
+    border-radius: 17px; /* Apply border-radius if desired */
+    margin-top: -20px; /* Adjust the right margin to position the image */
+}
 /* services section styling */
+
+
 .services, .teams{
-    color:#fff;
-    background: #111;
+    background-color: rgba(37, 6, 6, 0.5); /* Example background color */
+    filter: blur(-9px); /* Add blur effect */
+    z-index: -2;
 }
 .services .title::before,
 .teams .title::before{
@@ -268,11 +379,11 @@ section .title::after{
 }
 .services .title::after,
 .teams .title::after{
-    background: #111;
+    background: #fbf9f9;
     content: "what i provide";
 }
 .services .serv-content .card{
-    width: calc(33% - 20px);
+    width: calc(33% );
     background: #222;
     text-align: center;
     border-radius: 6px;
@@ -299,8 +410,12 @@ section .title::after{
 }
 .services .serv-content .card .text{
     font-size: 25px;
+    color:#fff;
     font-weight: 500;
     margin: 10px 0 7px 0;
+}
+.services .serv-content .card p {
+    color: #fff;
 }
 
 /* skills section styling */
@@ -363,24 +478,36 @@ section .title::after{
     background: crimson;
 }
 .skills-content .right .html::before{
-    width: 90%;
+    width: 100%;
 }
 .skills-content .right .css::before{
-    width: 60%;
+    width: 100%;
 }
 .skills-content .right .js::before{
-    width: 80%;
+    width: 100%;
 }
 .skills-content .right .php::before{
-    width: 50%;
+    width: 100%;
 }
 .skills-content .right .mysql::before{
-    width: 70%;
+    width: 100%;
+}
+.view-button {
+    color: white;
+    background-color: rgba(255, 0, 0, 0);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.view-button:hover {
+    background-color: darkred;
 }
 
 /* teams section styling */
 .teams .title::after{
-    content: "who with me";
+    content: "what i did";
 }
 .teams .carousel .card{
     background: #222;
@@ -404,16 +531,17 @@ section .title::after{
     transform: scale(1.05);
 }
 .teams .carousel .card .text{
+    color: #fff;
     font-size: 25px;
     font-weight: 500;
     margin: 10px 0 7px 0;
 }
 .teams .carousel .card img{
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid crimson;
+    height: 200px;
+    width: 250px;
+    object-fit:cover;
+    border-radius: 0%;
+    border: 5px solid crimson; /* Specify border width, style, and color */
     transition: all 0.3s ease;
 }
 .teams .carousel .card:hover img{
@@ -676,5 +804,21 @@ footer span a:hover{
         width: 35px;
         font-size: 23px;
         line-height: 38px;
+    }
+    .imageContent {
+        
+        height: auto;
+        padding-top: 0;
+    }
+    .imageElement {
+        height: 200px;
+        width: 200px;
+    }
+    .myImg {
+        right: 0;
+        left: 0;
+        margin: auto;
+        display: flex;
+        justify-content: center;
     }
 }
